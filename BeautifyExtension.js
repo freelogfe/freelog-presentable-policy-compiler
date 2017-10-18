@@ -1,4 +1,4 @@
-const policyListener = require('policy_lang').policyListener;
+const policyListener = require('presentable_policy_lang').policyListener;
 let _ = require('underscore');
 let indentLevel = 2
 

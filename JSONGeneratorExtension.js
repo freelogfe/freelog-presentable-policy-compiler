@@ -1,4 +1,4 @@
-const policy = require('policy_lang');
+const policy = require('presentable_policy_lang');
 const policyListener = policy.policyListener;
 let _ = require('underscore');
 
