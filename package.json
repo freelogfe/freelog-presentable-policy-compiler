@@ -9,7 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "presentable_policy_lang": "^1.0.1",
+    "presentable_policy_lang": "^1.0.2",
     "underscore": "^1.8.3"
   }
 }
