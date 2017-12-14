@@ -43,6 +43,7 @@ class JSONGeneratorExtentionClass extends policyListener {
   enterSegment(ctx) {
     //对应一个segment
     ctx.segment_block = {
+      segmentText : ctx.start.source[0]._input.strdata.slice(ctx.start.start, ctx.stop.stop+1 ),
       initialState : 'initial',
       terminateState : 'terminate',
       users: [], //暂时只有两种user，个人的和组的
