@@ -1,11 +1,10 @@
-var compiler = require('./index.js');
+var compiler = require('./lib/index.js');
 var string1=
-'For userA, userB in the following states: '+
-   'in initial:proceed to activatetwo on accepting license licenseA, licenseB and on contract_guaranty of 5000 refund after 1 day '+
-   'in activatetwo: proceed to activate on date 2012-12-12  ' +
-   'in activate: proceed to activatetwo on the end of day ' +
-   'in activatetwo: proceed to activate on 10 day after contract creation proceed to activate on contract_guaranty of 12 refund after 13 day '+
-'I agree to authorize token in begining, activate'
+`For 0x12@123.com34, 0x432com, 0x432m and users in LoginUser, RegisteredUser:
+  in initial :  proceed to signing on accepting transaction of 100 to feth1026f01634a
+  in signing:
+    proceed to activate on accepting license license_A
+  I agree to authorize token in activate`;
 
 var string2 =
 'This contract shall commence with effect from 12-12-2012 03:30 and shall continue until 12-12-2012 03:30 unless terminated earlier in accordance with its terms and conditions'+
@@ -66,10 +65,11 @@ var str7 = `For testUser@test.com and users in LoginUser in the following states
    // console.log(re);
   //  var str = re.stringArray.join(' ').replace(/\n\s/g,'\n');
   //  console.log(str);
-   var re2 = compiler.compile(str8,'beautify');
+   var re2 = compiler.compile(string1);
+   console.log(re2);
    // console.log(re2);
-   // console.log(re2.policy_segments[0].users);
+   console.log(re2.policy_segments[0].users);
   //  console.log(re2.policy_segments[0].state_transition_table);
   //  console.log(JSON.stringify(re2.policy_segments[0].state_transition_table));
 
-    console.log(compiler.compile(str8, 'beautify').stringArray.splice(1).join(' ').replace(/\n\s/g,'\n'));
+    // console.log(compiler.compile(string1, 'beautify').stringArray.splice(1).join(' ').replace(/\n\s/g,'\n'));
