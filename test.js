@@ -72,4 +72,4 @@ var str7 = `For testUser@test.com and users in LoginUser in the following states
   //  console.log(re2.policy_segments[0].state_transition_table);
   //  console.log(JSON.stringify(re2.policy_segments[0].state_transition_table));
 
-    // console.log(compiler.compile(string1, 'beautify').stringArray.splice(1).join(' ').replace(/\n\s/g,'\n'));
+    console.log(compiler.compile(string1, 'beautify').stringArray.splice(1).join(' ').replace(/\n\s/g,'\n'));

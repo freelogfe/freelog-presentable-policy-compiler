@@ -32,7 +32,7 @@ class Beautify extends policyListener {
     });
   };
   exitAudience_clause(ctx) {
-    this.stringArray.push('in the following states:');
+    this.stringArray.push(':');
     this.addIndent();
     this.stringArray.push(this._nextIndent);
   };
