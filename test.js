@@ -7,13 +7,12 @@ var string1=
   I agree to authorize token in activate`;
 
 var string2 =
-'This contract shall commence with effect from 12-12-2012 03:30 and shall continue until 12-12-2012 03:30 unless terminated earlier in accordance with its terms and conditions'+
-'For users in groupA, groupB:'+
-     'in begining:proceed to activate on accepting license license_A and platform_guaranty of 200000 '+
-'The account settlement shall be performed on every 2 day in token state activate ' +
-'For userA, userB: in begining:proceed to activatetwo on accepting license licenseA licenseB and contract_guaranty of 5000 refund after 1 day '+
-   'in activatetwo: proceed to activate on accepting price priceExpression '+
-'The account settlement shall be performed on every 2 day in token state activate activatetwo'
+`For 0x12@123.com34 :
+    in initial :
+      proceed to activate on accepting transaction of 100 to feth1026f01634a
+    in activate :
+      proceed to suspend on accepting lincese LicenseA
+        I agree to authorize token in activate`
 
 var string3 =
 'This contract shall commence with effect from 2017-12-12 03:30 and shall continue until 2017-12-21 03:30 unless terminated earlier in accordance with its terms and conditions'+
@@ -65,11 +64,11 @@ var str7 = `For testUser@test.com and users in LoginUser in the following states
    // console.log(re);
   //  var str = re.stringArray.join(' ').replace(/\n\s/g,'\n');
   //  console.log(str);
-   var re2 = compiler.compile(string1);
+   var re2 = compiler.compile(string2);
    console.log(re2);
    // console.log(re2);
    console.log(re2.policy_segments[0].users);
   //  console.log(re2.policy_segments[0].state_transition_table);
   //  console.log(JSON.stringify(re2.policy_segments[0].state_transition_table));
 
-    console.log(compiler.compile(string1, 'beautify').stringArray.splice(1).join(' ').replace(/\n\s/g,'\n'));
+    console.log(compiler.compile(string2, 'beautify').stringArray.splice(1).join(' ').replace(/\n\s/g,'\n'));
