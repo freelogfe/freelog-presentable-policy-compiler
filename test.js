@@ -7,12 +7,12 @@ var string1=
   I agree to authorize token in activate`;
 
 var string2 =
-`For 0x12@123.com34 :
-    in initial :
-      proceed to activate on accepting transaction of 100 to feth1026f01634a
-    in activate :
-      proceed to suspend on accepting lincese LicenseA
-        I agree to authorize token in activate`
+`For userA@userB :
+in initial :
+proceed to activate on accepting transaction of 100 to feth1026f01634a
+in activate :
+proceed to suspend on accepting license LicenseA
+  I agree to authorize token in activate`
 
 var string3 =
 'This contract shall commence with effect from 2017-12-12 03:30 and shall continue until 2017-12-21 03:30 unless terminated earlier in accordance with its terms and conditions'+
