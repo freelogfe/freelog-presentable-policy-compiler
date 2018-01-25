@@ -6,7 +6,7 @@ var string1=
     proceed to activate on accepting license license_A`;
 
 var string2 =
-`for test@qq.com, nodes:
+`for registered_usrs:
   in initial :
     proceed to signing on transaction of 200 to feth209fa4da1a4
   in signing:
