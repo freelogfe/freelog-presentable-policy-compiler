@@ -6,7 +6,7 @@ var string1=
     proceed to activate on accepting license license_A`;
 
 var string2 =
-`for group_user_bbb:
+`for 13480125810, nodes:
   in initial :
     proceed to signing on transaction of 200 to feth209fa4da1a4
   in signing:
