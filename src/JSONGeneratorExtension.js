@@ -107,9 +107,10 @@ class JSONGeneratorExtentionClass extends policyListener {
     ctx.segment_block = ctx.parentCtx.segment_block;
     //是否手机或者邮箱地址
     let user = ctx.getText();
-    let isEmail =   /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(user)
-    let isPhone = /^1[3|4|5|8][0-9]\d{4,8}$/.test(user)
-    if ( isEmail || isPhone ) {
+    let isEmail =   /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(user);
+    let isPhone = /^1[3|4|5|8][0-9]\d{4,8}$/.test(user);
+    let isSelf = /self/.test(user.toLowerCase());
+    if ( isEmail || isPhone || isSelf ) {
       if( !individualFlag ) {
         individualFlag = true;
         ctx.segment_block.users.push({'userType': 'individual', users:[user]})
