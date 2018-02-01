@@ -8,7 +8,7 @@ var string1=
 var string2 =
 `for public:
 in initial:
-proceed to <good> on license e759419923ea25bf6dff2694391a1e65c21739ce`
+proceed to <good> on accepting license e759419923ea25bf6dff2694391a1e65c21739ce`
 
    console.log('start gen');
   //  var re = compiler.compile(string1, 'beautify');
