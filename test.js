@@ -6,11 +6,9 @@ var string1=
     proceed to activate on accepting license license_A`;
 
 var string2 =
-`for registered_users, self:
-  in initial :
-    proceed to signing on transaction of 200 to feth209fa4da1a4
-  in signing:
-    proceed to <activate> on license e759419923ea25bf6dff2694391a1e65c21739ce`;
+`for public:
+in initial:
+proceed to <good> on license e759419923ea25bf6dff2694391a1e65c21739ce`
 
    console.log('start gen');
   //  var re = compiler.compile(string1, 'beautify');
