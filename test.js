@@ -1,6 +1,6 @@
 var compiler = require('./src/index.js');
 var string1=
-`for  group_user_abcd:
+`for  self:
   in initial :
     proceed to <activate> on accepting license e759419923ea25bf6dff2694391a1e65c21739ce
   in <activate> :
