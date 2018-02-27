@@ -56,12 +56,12 @@ class Beautify extends presentablePolicyListener {
     this.stringArray.push(this._nextIndent);
     if (!checkExist('ID', ctx)) {
 
-    }else {
+    } else {
       if (ctx.getText().toLowerCase() == 'terminate') {
         this.stringArray = this.stringArray.concat([ctx.getText()]);
       } else {
         this.stringArray = this.stringArray.concat(['proceed to', ctx.ID().getText(), 'on']);
-      }  
+      }
     }
   };
 
@@ -164,8 +164,8 @@ class Beautify extends presentablePolicyListener {
   }
 };
 
-function checkExist(name,ctx) {
-  if ( ctx[name]() != null ) {
+function checkExist(name, ctx) {
+  if (ctx[name]() !== null) {
     return true
   }
   return false
