@@ -37,22 +37,22 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
   }
 
   enterP(ctx) {
-  };
+  }
 
   exitP(ctx) {
-  };
+  }
 
   enterStart_hour(ctx) {
-  };
+  }
 
   exitStart_hour(ctx) {
-  };
+  }
 
   enterEnd_hour(ctx) {
-  };
+  }
 
   exitEnd_hour(ctx) {
-  };
+  }
 
   enterSegment(ctx) {
     //对应一个segment
@@ -64,8 +64,8 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       states: [],
       all_occured_states: [],
       state_transition_table: []
-    };
-  };
+    }
+  }
 
   exitSegment(ctx) {
     if (ctx.segment_block.activatedStates == [] || !ctx.segment_block.activatedStates) {
@@ -75,7 +75,7 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
     initialFlag = false;
     individualFlag = false;
     groupFlag = false;
-  };
+  }
 
   // 留给下简化版
   // enterSettlement_clause (ctx) {};
@@ -150,19 +150,19 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
         })
       }
     }
-  };
+  }
 
   exitUsers(ctx) {
     ctx.parentCtx.segment_block = ctx.segment_block;
-  };
+  }
 
   enterState_clause(ctx) {
     ctx.segment_block = ctx.parentCtx.segment_block;
-  };
+  }
 
   exitState_clause(ctx) {
     ctx.parentCtx.segment_block = ctx.segment_block;
-  };
+  }
 
   enterCurrent_state_clause(ctx) {
     ctx.segment_block = ctx.parentCtx.segment_block;
@@ -174,11 +174,11 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
     ctx.segment_block.states.push(ctx.ID().getText());
     ctx.segment_block.all_occured_states.push(ctx.ID().getText());
     ctx.segment_block.all_occured_states = _.uniq(ctx.segment_block.all_occured_states);
-  };
+  }
 
   exitCurrent_state_clause(ctx) {
     ctx.parentCtx.segment_block = ctx.segment_block;
-  };
+  }
 
   enterTarget_clause(ctx) {
 
@@ -204,7 +204,7 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
     }
     //重置event
     ctx.events = [];
-  };
+  }
 
   // Exit a parse tree produced by policyParser#target_clause.
   exitTarget_clause(ctx) {
@@ -256,23 +256,23 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
     }
     //回传
     ctx.parentCtx.segment_block = ctx.segment_block;
-  };
+  }
 
   enterEvent(ctx) {
     ctx.events = ctx.parentCtx.events;
-  };
+  }
 
   exitEvent(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterAnd_event(ctx) {
     ctx.events = ctx.parentCtx.events;
-  };
+  }
 
   exitAnd_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterPeriod_event(ctx) {
     let timeUnit = ctx.time_unit().getText();
@@ -282,11 +282,11 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       params: [timeUnit],
       eventName: 'period_' + timeUnit + '_event'
     });
-  };
+  }
 
   exitPeriod_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterSpecific_date_event(ctx) {
     let date = ctx.DATE().getText();
@@ -296,11 +296,11 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       params: [1, date],
       eventName: 'arrivalDate_1_' + date + '_event'
     });
-  };
+  }
 
   exitSpecific_date_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterRelative_date_event(ctx) {
     let day = Number(ctx.INT().getText());
@@ -311,11 +311,11 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       params: [0, day, unit],
       eventName: 'arrivalDate_0_' + day + '_' + unit + '_event'
     });
-  };
+  }
 
   exitRelative_date_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterPricing_agreement_event(ctx) {
     ctx.events = ctx.parentCtx.events;
@@ -324,11 +324,11 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       params: [tbd],
       eventName: 'pricingAgreement'
     });
-  };
+  }
 
   exitPricing_agreement_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterTransaction_event(ctx) {
     let transactionAmount = Number(ctx.INTEGER_NUMBER().getText());
@@ -341,11 +341,11 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       params: [account_id, transactionAmount],
       eventName: 'transaction_' + account_id + '_' + transactionAmount + '_event'
     });
-  };
+  }
 
   exitTransaction_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterSigning_event(ctx) {
     ctx.events = ctx.parentCtx.events;
@@ -358,19 +358,19 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       params: tempLicenseIds,
       eventName: 'signing_' + tempLicenseIds.join('_')
     });
-  };
+  }
 
   exitSigning_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterGuaranty_event(ctx) {
     ctx.events = ctx.parentCtx.events;
-  };
+  }
 
   exitGuaranty_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterContract_guaranty(ctx) {
     let amount = ctx.INT()[0].getText();
@@ -381,11 +381,11 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       params: [amount, day, 'day'],
       eventName: 'contractGuaranty_' + amount + '_' + day + '_event'
     });
-  };
+  }
 
   exitContract_guaranty(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterPlatform_guaranty(ctx) {
     ctx.events = ctx.parentCtx.events;
@@ -394,11 +394,11 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       params: [Number(ctx.INT().getText())],
       eventName: 'platformGuaranty'
     });
-  };
+  }
 
   exitPlatform_guaranty(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterSettlement_event(ctx) {
     ctx.events = ctx.parentCtx.events;
@@ -406,19 +406,19 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       type: 'accountSettled',
       params: []
     });
-  };
+  }
 
   exitSettlement_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterAccess_count_event(ctx) {
     ctx.events = ctx.parentCtx.events;
-  };
+  }
 
   exitAccess_count_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterVisit_increment_event(ctx) {
     ctx.events = ctx.parentCtx.events;
@@ -426,12 +426,12 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       type: 'accessCountIncrement',
       params: [Number(ctx.INT().getText())]
     });
-  };
+  }
 
   // Exit a parse tree produced by policyParser#visit_increment_event.
   exitVisit_increment_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterVisit_event(ctx) {
     ctx.events = ctx.parentCtx.events;
@@ -439,56 +439,56 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       type: 'accessCount',
       params: [Number(ctx.INT().getText())]
     });
-  };
+  }
 
   exitVisit_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterBalance_event(ctx) {
     ctx.events = ctx.parentCtx.events;
-  };
+  }
 
   exitBalance_event(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   // Enter a parse tree produced by policyParser#balance_greater.
   enterBalance_greater(ctx) {
     ctx.events = ctx.parentCtx.events;
     ctx.events.push({type: 'balance_smaller_event', params: ctx.getText()});
-  };
+  }
 
   exitBalance_greater(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterBalance_smaller(ctx) {
     ctx.events = ctx.parentCtx.events;
     ctx.events.push({type: 'balance_greater_event', params: ctx.getText()});
-  };
+  }
 
   exitBalance_smaller(ctx) {
     ctx.parentCtx.events = ctx.events;
-  };
+  }
 
   enterTime_unit(ctx) {
-  };
+  }
 
   exitTime_unit(ctx) {
-  };
+  }
 
   enterState(ctx) {
-  };
+  }
 
   exitState(ctx) {
-  };
+  }
 
   enterLicense_resource_id(ctx) {
-  };
+  }
 
   exitLicense_resource_id(ctx) {
-  };
+  }
 
   enterUser_individual(ctx) {
     // //直接挂载到Audience_clauseContext 上面，所以不需要回传了
@@ -508,7 +508,7 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
     //     ctx.segment_block.users.push({userType:'individual', users:[ctx.getText()]})
     // }
 
-  };
+  }
 
   exitUser_individual(ctx) {
   }
@@ -523,13 +523,13 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
         ctx.userObj.users.push(ctx.getChild(i).getText());
       }
     }
-  };
+  }
 
   exitUser_groups(ctx) {
     //回传
     ctx.parentCtx.userObj = ctx.userObj;
-  };
+  }
 
-};
+}
 
 module.exports = JSONGeneratorExtentionClass;
