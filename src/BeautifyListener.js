@@ -41,7 +41,14 @@ class Beautify extends presentablePolicyListener {
     this.pushIndent(1)
   }
 
+
+  enterInitial_state_clause(ctx) {
+    this.pushChildren(ctx.children)
+  }
+
   enterCurrent_state_clause(ctx) {
+    this.stringArray.push('\n');
+    this.pushIndent(1)
     this.pushChildren(ctx.children)
   }
 
@@ -53,9 +60,6 @@ class Beautify extends presentablePolicyListener {
     } else {
       this.stringArray = this.stringArray.concat(['proceed to', ctx.ID().getText(), 'on']);
     }
-  }
-
-  exitTarget_clause() {
   }
 
   enterAccepting(ctx) {

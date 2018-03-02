@@ -30,7 +30,7 @@ function compile(text) {
   let Listener;
   Listener = require('./JSONGeneratoListener.js');
   return parse(text, Listener)
-};
+}
 
 function beautify(text) {
   var Listener = require('./BeautifyListener.js');
