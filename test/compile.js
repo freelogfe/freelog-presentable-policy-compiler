@@ -1,7 +1,7 @@
 var assert = require('assert')
 const fs = require('fs-extra')
 var path = require('path')
-const {diff} = require('json-diff')
+const {diff} = require('deep-diff')
 var compiler = require('../src/index.js');
 var base = 'test/fixtures'
 var compileFixtures = path.join(base, 'compile')
@@ -10,10 +10,7 @@ describe('resource-policy-compiler -> compile policy', function () {
 
   function execJSONCompare(policy, target, done) {
     var result = compiler.compile(policy)
-
-    // var tmp = diff(result, fs.readJSONSync(path.join(compileFixtures, target)))
-    assert.equal(JSON.stringify(result),JSON.stringify(fs.readJSONSync(path.join(compileFixtures, target))))
-    // assert.equal(undefined, diff(result, fs.readJSONSync(path.join(compileFixtures, target))))
+    assert.equal(undefined, diff(result, fs.readJSONSync(path.join(compileFixtures, target))))
     done()
   }
 
@@ -100,10 +97,37 @@ in <A> :
     execJSONCompare(policy, 'email_phone.json', done)
   })
 
-  it('compound Events', function (done) {
+  it('test time unit', function (done) {
     var policy = `
             for public  :
               in <initial>:
+                proceed to <active>  on 1 cycle after contract creation
+                proceed to <active>  on 2 cycles after contract creation
+                proceed to <active>  on 3 days after contract creation
+                proceed to <active>  on 3 years after contract creation
+                proceed to <active>  on 3 months after contract creation
+    `;
+
+    execJSONCompare(policy, 'time_unit.json', done)
+  })
+
+  it('multi states', function (done) {
+    var policy = `
+            for public  :
+              in <initial>:
+                proceed to <active>  on receiving transaction of 1999 to feth233dbc32081
+                in <active>:
+                proceed to <activeA>  on accepting license e759419923ea25bf6dff2694391a1e65c21739ba
+    `;
+
+    execJSONCompare(policy, 'multi_states.json', done)
+  })
+
+
+  it('compound Events', function (done) {
+    var policy = `
+            for public  :
+              in initial:
                 proceed to <active>  on receiving transaction of 1999 to feth233dbc32081 and on accepting license e759419923ea25bf6dff2694391a1e65c21739ba
     `;
 

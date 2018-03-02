@@ -1,19 +1,8 @@
 const {presentablePolicyListener} = require('@freelog/presentable-policy-lang');
 const ACTIVE_REG = /^<.+>$/
 
-function getSegmentText(children) {
-  var arr = []
-  children.forEach((child) => {
-    if (child.children) {
-      arr = arr.concat(getSegmentText(child.children))
-    } else {
-      arr.push(child.getText())
-    }
-  })
-  return arr
-}
-
 class JSONGeneratorExtentionClass extends presentablePolicyListener {
+
   constructor() {
     super();
     this.errorMsg = null;
@@ -36,7 +25,7 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
 
     segment_block.users = Object.values(users)
     segment_block.all_occured_states = Array.from(segment_block.all_occured_states);
-    segment_block.activatedStates = segment_block.all_occured_states.filter((state)=>{
+    segment_block.activatedStates = segment_block.all_occured_states.filter((state) => {
       if (ACTIVE_REG.test(state)) {
         return state;
       }
@@ -44,9 +33,11 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
   }
 
   enterSegment(ctx) {
-    var textArr = getSegmentText(ctx.children)
+    var originalInput = ctx.start.getInputStream().strdata
+    var segmentText = originalInput.slice(ctx.start.start, ctx.stop.stop + 1)
+    segmentText = segmentText.replace(/[ \t\r\n]+/g, ' ')
     this._segment_block = {
-      segmentText: textArr.join(' '),
+      segmentText: segmentText,
       initialState: '',
       terminateState: 'terminate',
       users: [],
@@ -69,6 +60,7 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
     //临时变量
     delete this._segment_block
     delete this._events
+    delete this._current_state
   }
 
   enterUsers(ctx) {
@@ -90,8 +82,7 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
   enterCurrent_state_clause(ctx) {
     let segment_block = this._segment_block
     let state = ctx.ID().getText()
-
-    ctx.current_state = state;
+    this._current_state = state;
     segment_block.states.push(state);
     segment_block.all_occured_states.add(state);
   }
@@ -99,8 +90,9 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
   enterInitial_state_clause(ctx) {
     let segment_block = this._segment_block
     var state = ctx.children[1].getText();
+
     segment_block.initialState = state
-    ctx.current_state = state
+    this._current_state = state
     segment_block.states.push(state);
     segment_block.all_occured_states.add(state);
   }
@@ -119,7 +111,7 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
   exitTarget_clause(ctx) {
     let segment_block = this._segment_block
     let state_transition = {
-      currentState: ctx.current_state,
+      currentState: this._current_state,
       nextState: ctx.next_state
     };
 
@@ -157,6 +149,8 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
   enterRelative_date_event(ctx) {
     let day = Number(ctx.INTEGER_NUMBER().getText());
     let unit = ctx.time_unit().getText();
+
+    unit = unit.replace(/s$/, '')
     this._events.push({
       type: 'arrivalDate',
       params: [0, day, unit],
