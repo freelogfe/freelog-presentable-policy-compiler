@@ -1,6 +1,6 @@
 {
   "name": "@freelog/presentable-policy-compiler",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "main": "./lib/index.js",
   "scripts": {
     "test": "istanbul test _mocha --report html -- test/*.js --reporter spec",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "@freelog/presentable-policy-lang": "0.0.3",
+    "@freelog/presentable-policy-lang": "0.0.4",
     "antlr4": "^4.7.1"
   },
   "keywords": [
