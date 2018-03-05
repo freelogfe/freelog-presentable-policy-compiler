@@ -3,7 +3,7 @@
   "version": "0.0.6",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "istanbul test _mocha --report html -- test/*.js --reporter spec",
+    "test": "istanbul test node_modules/mocha/bin/_mocha --report html -- test/*.js --reporter spec",
     "publish": "npm publish --access=public",
     "babel": "babel src -d lib"
   },
