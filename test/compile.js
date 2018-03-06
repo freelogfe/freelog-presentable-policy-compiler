@@ -162,9 +162,10 @@ in <A> :
     var policy = `
             for public  :
               in <initial>:
-                proceed to <active>  on accepting license e759419923ea25bf6dff2694391a1e65c21739ce,abc123sdfs
+                proceed to <active>  on accepting license e759419923ea25bf6dff2694391a1e65c21739ce,e759419923ea25bf6dff2694391a1e65c21739ce
     `;
-
+    var result = compiler.compile(policy)
+    console.log(JSON.stringify(result));
     execJSONCompare(policy, 'signing_event.json', done)
   })
 
@@ -215,4 +216,14 @@ in <A> :
 
     execJSONCompare(policy, 'visit_event.json', done)
   })
+
+  it('contract_guaranty_event', function (done) {
+    var policy = `
+            for public  :
+              in <initial>:
+                proceed to <active> on contract_guaranty of 1000 refund after 1 year
+    `;
+    execJSONCompare(policy, 'contract_guaranty_event.json', done)
+  })
+
 });
