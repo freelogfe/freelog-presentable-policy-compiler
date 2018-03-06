@@ -1,6 +1,6 @@
 {
   "name": "@freelog/presentable-policy-compiler",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "./lib/index.js",
   "scripts": {
     "test": "istanbul test node_modules/mocha/bin/_mocha --report html -- test/*.js --reporter spec",
