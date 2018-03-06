@@ -101,13 +101,8 @@ in <A> :
     var policy = `
             for public  :
               in <initial>:
-                proceed to <active>  on 1 cycle after contract creation
-                proceed to <active>  on 2 cycles after contract creation
-                proceed to <active>  on 3 days after contract creation
-                proceed to <active>  on 3 years after contract creation
-                proceed to <active>  on 3 months after contract creation
+                proceed to <active>  after 1 cycle of contract creation
     `;
-
     execJSONCompare(policy, 'time_unit.json', done)
   })
 
@@ -130,7 +125,6 @@ in <A> :
               in initial:
                 proceed to <active>  on receiving transaction of 1999 to feth233dbc32081 and on accepting license e759419923ea25bf6dff2694391a1e65c21739ba
     `;
-
     execJSONCompare(policy, 'compoundEvents.json', done)
   })
 
@@ -178,9 +172,8 @@ in <A> :
     var policy = `
             for public  :
               in <initial>:
-                proceed to <active>  on arriving date 2018-08-08 12:20
+                proceed to <active>  at 2018-08-08 12:20
     `;
-
     execJSONCompare(policy, 'specific_date_event.json', done)
   })
 
@@ -188,9 +181,8 @@ in <A> :
     var policy = `
             for public  :
               in <initial>:
-                proceed to <active>  on 1 cycle after contract creation
+                proceed to <active>  after 1 cycle of contract creation
     `;
-
     execJSONCompare(policy, 'relative_date_event.json', done)
   })
 

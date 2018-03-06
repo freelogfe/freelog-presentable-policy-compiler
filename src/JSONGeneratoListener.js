@@ -127,7 +127,7 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
   }
 
   enterPeriod_event(ctx) {
-    let timeUnit = ctx.time_unit().getText();
+    let timeUnit = ctx.TIMEUNIT().getText();
     this._events.push({
       type: 'period',
       params: [timeUnit],
@@ -148,7 +148,7 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
 
   enterRelative_date_event(ctx) {
     let day = Number(ctx.INTEGER_NUMBER().getText());
-    let unit = ctx.time_unit().getText();
+    let unit = ctx.TIMEUNIT().getText();
 
     unit = unit.replace(/s$/, '')
     this._events.push({
@@ -199,9 +199,6 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
     });
   }
 
-  exitContract_guaranty(ctx) {
-  }
-
   enterPlatform_guaranty(ctx) {
     this._events.push({
       type: 'platformGuaranty',
@@ -222,9 +219,6 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
       type: 'accessCountIncrement',
       params: [Number(ctx.INTEGER_NUMBER().getText())]
     });
-  }
-
-  exitVisit_increment_event(ctx) {
   }
 
   enterVisit_event(ctx) {
