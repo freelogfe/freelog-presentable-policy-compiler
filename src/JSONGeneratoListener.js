@@ -111,17 +111,17 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
   exitTarget_clause(ctx) {
     let segment_block = this._segment_block
     let state_transition = {
-      currentState: this._current_state,
-      nextState: ctx.next_state
+      currentState: this._current_state
     };
 
-    if (this._events.length > 1) {
-      state_transition.event = {
+    if (ctx.next_state) {
+      state_transition.nextState = ctx.next_state
+    }
+    if (this._events.length) {
+      state_transition.event = (this._events.length > 1) ? {
         type: 'compoundEvents',
         params: this._events
-      }
-    } else {
-      state_transition.event = this._events[0]
+      } : this._events[0];
     }
     segment_block.state_transition_table.push(state_transition);
   }

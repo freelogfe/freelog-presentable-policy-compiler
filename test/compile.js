@@ -58,6 +58,33 @@ describe('resource-policy-compiler -> compile policy', function () {
     done()
   })
 
+
+  it('test user group', function (done) {
+    var policy = `
+            
+  for group_user_5a9f8b22ad98f000220a0317 :
+in <initial> :
+  terminate
+    `;
+
+    var result = compiler.compile(policy)
+    assert.equal(result.errorMsg, null)
+    done()
+  })
+
+  it('test node group', function (done) {
+    var policy = `
+            
+  for group_node_5a9f8b22ad98f000220a0317 :
+in <initial> :
+  terminate
+    `;
+
+    var result = compiler.compile(policy)
+    assert.equal(result.errorMsg, null)
+    done()
+  })
+
   it('compile multi policy', function (done) {
     var policy = `
       for public :
@@ -165,7 +192,6 @@ in <A> :
                 proceed to <active>  on accepting license e759419923ea25bf6dff2694391a1e65c21739ce,e759419923ea25bf6dff2694391a1e65c21739ce
     `;
     var result = compiler.compile(policy)
-    console.log(JSON.stringify(result));
     execJSONCompare(policy, 'signing_event.json', done)
   })
 
