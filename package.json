@@ -11,7 +11,7 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "@freelog/presentable-policy-lang": "latest",
+    "@freelog/presentable-policy-lang": "0.0.8",
     "antlr4": "^4.7.1"
   },
   "keywords": [
@@ -25,6 +25,6 @@
     "deep-diff": "^0.3.8",
     "fs-extra": "^5.0.0",
     "istanbul": "^0.4.5",
-    "mocha": "^5.0.2"
+    "mocha": "^5.0.4"
   }
 }

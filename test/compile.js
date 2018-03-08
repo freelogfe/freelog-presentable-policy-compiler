@@ -164,8 +164,6 @@ in <A> :
               in <initial>:
                 proceed to <active>  on accepting license e759419923ea25bf6dff2694391a1e65c21739ce,e759419923ea25bf6dff2694391a1e65c21739ce
     `;
-    var result = compiler.compile(policy)
-    console.log(JSON.stringify(result));
     execJSONCompare(policy, 'signing_event.json', done)
   })
 
@@ -225,5 +223,15 @@ in <A> :
     `;
     execJSONCompare(policy, 'contract_guaranty_event.json', done)
   })
+
+  it('platform_guaranty_event', function (done) {
+    var policy = `
+            for public  :
+              in <initial>:
+                proceed to <active> on receiving platform_guaranty of 1000
+    `;
+    execJSONCompare(policy, 'platform_guaranty_event.json', done)
+  })
+
 
 });
