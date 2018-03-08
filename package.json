@@ -11,7 +11,7 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "@freelog/presentable-policy-lang": "0.0.8",
+    "@freelog/presentable-policy-lang": "latest",
     "antlr4": "^4.7.1"
   },
   "keywords": [

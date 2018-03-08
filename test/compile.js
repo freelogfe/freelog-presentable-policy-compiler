@@ -31,7 +31,7 @@ describe('resource-policy-compiler -> compile policy', function () {
                 terminate`;
 
     var result = compiler.compile(policy)
-    assert.equal(result.errorMsg, 'line 3: mismatched input \'active\' expecting {\'initial\', \'<initial>\'}')
+    assert.equal(result.errorMsg, 'line 3: mismatched input \'active\' expecting {\'initial\', \'<initial>\', \'init\', \'<init>\'}')
     done()
   })
 
