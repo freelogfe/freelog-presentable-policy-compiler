@@ -170,6 +170,10 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
     let transactionAmount = Number(ctx.INTEGER_NUMBER().getText());
     let account_id = ctx.FEATHERACCOUNT().getText();
 
+    let REG = /^f[0-9A-Za-z]{14}$/;
+    if (!REG.test(account_id)) {
+      return this.errorMsg = 'FEATHERACCOUNT not valid.'
+    }
     this._events.push({
       type: 'transaction',
       params: [account_id, transactionAmount],
@@ -178,10 +182,17 @@ class JSONGeneratorExtentionClass extends presentablePolicyListener {
   }
 
   enterSigning_event(ctx) {
+    var flag = true;
     let tempLicenseIds = ctx.license_resource_id().map((licensId) => {
+      let result = licensId.getText();
+      if (!/^[a-z0-9A-Z]{40}$/.test(result)) {
+        flag = false;
+      }
       return licensId.getText()
     })
-
+    if (!flag) {
+      return this.errorMsg = 'license id not valid'
+    }
     this._events.push({
       type: 'signing',
       params: tempLicenseIds,
